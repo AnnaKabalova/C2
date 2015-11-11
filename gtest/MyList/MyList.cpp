@@ -51,3 +51,15 @@ CNode* del(CNode **pf, int n) {
   }
   return *pf;
 }
+bool comp(CNode *p, CNode *b) {
+  if (size(p) != size(b))
+    return false;
+  else
+    while (p != 0 && b != 0) {
+      if ((p->val) != (b->val))
+        return false;
+      p = p->next;
+      b = b->next;
+    }
+  return true;
+}
