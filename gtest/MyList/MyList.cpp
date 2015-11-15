@@ -35,6 +35,8 @@ int size(CNode *pf) {
 }
 
 CNode* del(CNode **pf, int n) {
+  if ((n<0 || n>size(*pf)) || *pf==NULL)
+    throw std::exception("negative or too large index");
   int f = size(*pf) - n + 1;
   CNode *cur = *pf,
   *p = NULL;
