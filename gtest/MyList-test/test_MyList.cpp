@@ -24,6 +24,7 @@ TEST(MyList, CreateList) {
   }
   EXPECT_EQ(kListSize, k);
 }
+
 TEST(MyList, can_del_first_element) {
   const int kListSize = 5;
   int vals[kListSize];
@@ -46,6 +47,7 @@ TEST(MyList, can_del_first_element) {
   print(e);
   EXPECT_EQ(true, comp(b, e));
 }
+
 TEST(MyList, can_del_last_element) {
   const int kListSize = 5;
   int vals[kListSize];
@@ -68,6 +70,7 @@ TEST(MyList, can_del_last_element) {
   print(e);
   EXPECT_EQ(true, comp(b, e));
 }
+
 TEST(MyList, cant_del_element_with_too_large_itdex) {
   const int kListSize = 5;
   int vals[kListSize];
@@ -77,6 +80,7 @@ TEST(MyList, cant_del_element_with_too_large_itdex) {
   CNode *p = CreateList(kListSize, vals);
   ASSERT_ANY_THROW(del(&p, n));
 }
+
 TEST(MyList, cant_del_element_with_negative_itdex) {
   const int kListSize = 5;
   int vals[kListSize];
@@ -86,6 +90,7 @@ TEST(MyList, cant_del_element_with_negative_itdex) {
   CNode *p = CreateList(kListSize, vals);
   ASSERT_ANY_THROW(del(&p, n));
 }
+
 TEST(MyList, cant_del_element_from_empty_node) {
   const int kListSize = 5;
   int vals[kListSize];
