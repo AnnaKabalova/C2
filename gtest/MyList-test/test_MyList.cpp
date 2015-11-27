@@ -100,3 +100,18 @@ TEST(MyList, cant_del_element_from_empty_node) {
   CNode *p = CreateList(0, vals);
   ASSERT_ANY_THROW(del(&p, n));
 }
+TEST(MyList, sort) {
+  const int kListSize = 5;
+  int vals[kListSize];
+  for (int i = 0; i < kListSize; ++i)
+  {
+	  if (i%2==0)
+		  vals[i] = i + 10;
+	  else
+          vals[i] = i + 1;
+  }
+  CNode *head = CreateList(kListSize, vals);
+  print(head);
+  sort(&head);
+  print(head);
+}
