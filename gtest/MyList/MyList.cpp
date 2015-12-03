@@ -77,77 +77,51 @@ bool comp(CNode *p, CNode *b) {
   return true;
 }
 
-CNode* sort(CNode **pf) {
-	//int n=size(*pf);
-	CNode* tmp = *pf;
-	while (tmp!=0)
-	{
-		CNode* tmp1 = tmp;
-		CNode* tmp2 = tmp;
-		CNode* min1=NULL;
-		int min=tmp1->val;
-		while(tmp1->next!=0) {
-			if (min>tmp1->next->val) {
-				min=tmp1->next->val;
-				min1=tmp1;
-			}
-			tmp1=tmp1->next;
-		}
-		
-			CNode* tmp3 = min1->next;
-			CNode* tmp4 = tmp;
-			min1->next=tmp4;
-			tmp4=tmp3->next;
-			print(*pf);
-			CNode* tmp5 = tmp->next;	
-			tmp=tmp3;
-			tmp->next=tmp5;
+void srt(CNode **pf) {
+  if (*pf == 0) {
+    throw std::exception("Empty node");
+  }
 
-			/*tmp4->next=min1->next->next;
+  if ((*pf)->next == 0) {
+    return;
+  }
 
-			min1->next->next=tmp3->next;
-			min1->next
-			tmp3->next->next=tmp->next;
-			tmp=tmp3;*/
-		
-		print(*pf);
-			break;
-	}
-	CNode* b = tmp;
-	tmp=tmp->next;
-	while (tmp!=0)
-	{
-		CNode* tmp1 = tmp;
-		CNode* tmp2 = tmp;
-		CNode* min1=NULL;
-		int min=tmp1->val;
-		while(tmp1->next!=0) {
-			if (min>tmp1->next->val) {
-				min=tmp1->next->val;
-				min1=tmp1;
-			}
-			tmp1=tmp1->next;
-		}
-
-			CNode* tmp3 = min1->next;
-			CNode* tmp4 = tmp;
-			min1->next=tmp4;
-			tmp4=tmp3->next;
-			
-			CNode* tmp5 = tmp->next;	
-			b->next=tmp3;
-			tmp3->next=tmp5;
-
-			/*CNode* tmp3 = min1;
-			min1->next=tmp;
-			tmp3->next->next=tmp->next;
-			b->next=tmp3;
-			/*tmp=min1->next;
-			min1=tmp->next;*/
-		
-		print(*pf);
-		tmp=tmp->next;
-		b=b->next;
-	}
-	return *pf;
+  if ((*pf)->next->next == 0) {
+    if ((*pf)->val > (*pf)->next->val) {
+      CNode *tmp = (*pf)->next;
+      (*pf)->next->next = (*pf);
+      (*pf)->next = 0;
+      (*pf) = tmp;
+    }
+    return;
+  }
+//первый элемент
+  CNode *tmp;
+  int f = 0;
+  while (f == 0) {
+    f = 1;
+    tmp = (*pf);
+    if (tmp->val > tmp->next->val) {
+      f = 0;
+      CNode *tmp2 = (*pf)->next;
+      CNode *tmp3 = (*pf)->next->next;
+      (*pf)->next->next = (*pf);
+      (*pf)->next = tmp3;
+	  (*pf) = tmp2;
+    }
+//для остальных элементов
+    while (tmp->next->next != 0) {
+      if (tmp->next->val > tmp->next->next->val) {
+        CNode *tmp1, *tmp2, *tmp3;
+          f = 0;
+          tmp1 = tmp->next;
+          tmp2 = tmp->next->next;
+          tmp3 = tmp->next->next->next;
+          tmp2->next = tmp1;
+          tmp1->next = tmp3;
+          tmp->next = tmp2;
+       }
+       tmp = tmp->next;
+    }
+  }
 }
