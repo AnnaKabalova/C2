@@ -8,4 +8,5 @@ void print(CNode *pf);
 int size(CNode *pf);
 CNode* del(CNode **pf, int n);
 bool comp(CNode*, CNode*);
+void srt(CNode **pf);
 #endif  // GTEST_MYLIST_MYLIST_H

@@ -100,3 +100,51 @@ TEST(MyList, cant_del_element_from_empty_node) {
   CNode *p = CreateList(0, vals);
   ASSERT_ANY_THROW(del(&p, n));
 }
+
+TEST(MyList, sort_node_with_0_elements) {
+  CNode* head = CreateList(0, 0);
+  ASSERT_ANY_THROW(srt(&head));
+}
+
+TEST(MyList, sort_node_with_1_elements) {
+  const int kListSize = 1;
+  int vals[kListSize] = { 4 };
+  CNode *head = CreateList(kListSize, vals);
+  int vals1[kListSize] = { 4 };
+  CNode *head1 = CreateList(kListSize, vals1);
+  srt(&head);
+  EXPECT_EQ(true, comp(head, head1));
+}
+
+TEST(MyList, sort_node_with_2_elements) {
+  const int kListSize = 2;
+  int vals[kListSize] = { 9 , 4 };
+  CNode *head = CreateList(kListSize, vals);
+  int vals1[kListSize] = { 4, 9 };
+  CNode *head1 = CreateList(kListSize, vals1);
+  srt(&head);
+  EXPECT_EQ(true, comp(head, head1));
+}
+
+TEST(MyList, sort_node_with_3_elements) {
+  const int kListSize = 3;
+  int vals[kListSize] = { 9, 4, 1 };
+  CNode *head = CreateList(kListSize, vals);
+  int vals1[kListSize] = { 1, 4, 9 };
+  CNode *head1 = CreateList(kListSize, vals1);
+  srt(&head);
+  EXPECT_EQ(true, comp(head, head1));
+}
+
+TEST(MyList, sort_node_with_5_elements) {
+  const int kListSize = 5;
+  int vals[kListSize] = {4,10,1,8,12};
+  CNode *head = CreateList(kListSize, vals);
+  int vals1[kListSize] = {1,4,8,10,12};
+  CNode *head1 = CreateList(kListSize, vals1);
+ 
+  print(head);
+  srt(&head);
+  print(head);
+  EXPECT_EQ(true, comp(head, head1));
+}
