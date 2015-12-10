@@ -148,3 +148,42 @@ TEST(MyList, sort_node_with_5_elements) {
   print(head);
   EXPECT_EQ(true, comp(head, head1));
 }
+
+TEST(MyList, can_create_list_with_positive_size) {
+  ASSERT_NO_THROW(list a(5));
+}
+
+TEST(MyList, cant_create_list_with_negative_size) {
+  ASSERT_ANY_THROW(list a(-4));
+}
+
+TEST(MyList, can_add_element) {
+  list a(1);
+  a.Add(7);
+  a.MoveNext();
+  EXPECT_EQ(7, a.data[a.cur]);
+}
+
+TEST(MyList, cant_add_element_to_full_list) {
+  list a(1);
+  a.Add(7);
+  a.MoveNext();
+  ASSERT_ANY_THROW(a.Add(5));
+}
+
+TEST(MyList, cant_deelte_element_from_empty_list) {
+  list a(1);
+  ASSERT_ANY_THROW(a.Del());
+}
+
+TEST(MyList, can_delete_element_from_list) {
+  list a(2);
+  a.Add(7);
+  a.MoveNext();
+  a.Add(5);
+  a.MoveNext();
+  a.MoveNext();
+  a.MoveNext();
+  a.Del();
+  EXPECT_EQ(a.pdata[a.cur], 0);
+}

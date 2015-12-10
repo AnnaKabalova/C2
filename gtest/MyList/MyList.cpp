@@ -125,3 +125,63 @@ void srt(CNode **pf) {
     }
   }
 }
+
+list::list(int n) {
+  if (n <= 0)
+    throw std::exception("Wrong size");
+  data = new double[n + 2];
+  pdata = new int[n + 2];
+  cur = 0;
+  pdata[0] = 0;
+  for (int i = 1; i < n + 1; i++)
+    pdata[i] = i + 1;
+  pdata[n + 1] = 1;
+}
+
+list::~list() {
+  delete[]data;
+  delete[]pdata;
+}
+
+void list::MoveNext() {
+  cur = pdata[cur];
+}
+
+void list::Add(double a) {
+  if (pdata[1] == 1)
+    throw std::exception("Full List");
+  int ine = pdata[1]; //индекс пустого звена
+  this->DelFreeNode(1);
+  this->AddNewNode(cur, ine);
+    data[ine] = a;
+}
+
+void list::DelFreeNode(int i) {
+  int cur1 = pdata[i];
+  pdata[i] = pdata[cur1];
+  pdata[cur1] = -1;
+}
+
+void list::AddNewNode(int i, int j) {
+  int next = pdata[i];
+  pdata[i] = j;
+  pdata[j] = next;
+}
+
+void list::Del() {
+  if (pdata[0] == 0)
+    throw std::exception("Empty List");
+  if (pdata[cur] == 0)
+    this->MoveNext();
+  int ine = pdata[cur]; //Ќомер, который удал€ем
+    this->DelFreeNode(cur);
+    this->AddNewNode(1, ine);
+}
+
+void list::print() {
+  int i = pdata[0];
+  while (i != 0) {
+    cout << data[i] << endl;
+    i = pdata[i];
+  }
+}
