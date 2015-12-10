@@ -171,7 +171,7 @@ TEST(MyList, cant_add_element_to_full_list) {
   ASSERT_ANY_THROW(a.Add(5));
 }
 
-TEST(MyList, cant_deelte_element_from_empty_list) {
+TEST(MyList, cant_delete_element_from_empty_list) {
   list a(1);
   ASSERT_ANY_THROW(a.Del());
 }
