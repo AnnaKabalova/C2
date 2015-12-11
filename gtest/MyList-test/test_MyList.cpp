@@ -187,3 +187,69 @@ TEST(MyList, can_delete_element_from_list) {
   a.Del();
   EXPECT_EQ(a.pdata[a.cur], 0);
 }
+
+TEST(MyList, can_delete_middle_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(2);
+  a.print();
+  EXPECT_EQ(a.pdata[a.cur], a.pdata[a.pdata[a.cur]]);
+}
+
+TEST(MyList, can_delete_last_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(1);
+  a.print();
+
+}
+
+TEST(MyList, can_delete_first_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(4);
+  a.print();
+
+}

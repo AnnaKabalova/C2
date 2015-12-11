@@ -129,6 +129,7 @@ void srt(CNode **pf) {
 list::list(int n) {
   if (n <= 0)
     throw std::exception("Wrong size");
+  size = n;
   data = new double[n + 2];
   pdata = new int[n + 2];
   cur = 0;
@@ -178,10 +179,48 @@ void list::Del() {
     this->AddNewNode(1, ine);
 }
 
+void list::del1(int n) {
+  if ((n < 0) || (n > size))
+    throw std::exception("negative or too large index");
+  int i=0;
+  int n1 = n;
+  while (pdata[i] != 0)
+	  i++;
+  n1--;
+  while(n1 >= 0) {
+    int j = 0;
+	while(pdata[j] != i)
+		j++;
+	i = j;
+	n1--;
+  }
+  cur = i;
+  this->Del();
+}
+
 void list::print() {
   int i = pdata[0];
   while (i != 0) {
-    cout << data[i] << endl;
+    cout << data[i] << " ";
     i = pdata[i];
   }
+  cout << endl;
+}
+
+bool cmp(list p, list b) {
+  if (p.size != b.size)
+    return false;
+  else
+  {
+	  int i = 0;
+	  int j = 0;
+    while (p.pdata[i] != 0 && b.pdata[j] != 0) {
+      if ((p.data[p.pdata[i]]) != (b.data[b.pdata[i]]))
+        return false;
+      i=p.pdata[i];
+	  j=b.pdata[i];
+
+    }
+  }
+  return true;
 }
