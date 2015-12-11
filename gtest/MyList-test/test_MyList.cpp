@@ -148,3 +148,108 @@ TEST(MyList, sort_node_with_5_elements) {
   print(head);
   EXPECT_EQ(true, comp(head, head1));
 }
+
+TEST(MyList, can_create_list_with_positive_size) {
+  ASSERT_NO_THROW(list a(5));
+}
+
+TEST(MyList, cant_create_list_with_negative_size) {
+  ASSERT_ANY_THROW(list a(-4));
+}
+
+TEST(MyList, can_add_element) {
+  list a(1);
+  a.Add(7);
+  a.MoveNext();
+  EXPECT_EQ(7, a.data[a.cur]);
+}
+
+TEST(MyList, cant_add_element_to_full_list) {
+  list a(1);
+  a.Add(7);
+  a.MoveNext();
+  ASSERT_ANY_THROW(a.Add(5));
+}
+
+TEST(MyList, cant_delete_element_from_empty_list) {
+  list a(1);
+  ASSERT_ANY_THROW(a.Del());
+}
+
+TEST(MyList, can_delete_element_from_list) {
+  list a(2);
+  a.Add(7);
+  a.MoveNext();
+  a.Add(5);
+  a.MoveNext();
+  a.MoveNext();
+  a.MoveNext();
+  a.Del();
+  EXPECT_EQ(a.pdata[a.cur], 0);
+}
+
+TEST(MyList, can_delete_middle_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(2);
+  a.print();
+  EXPECT_EQ(a.pdata[a.cur], a.pdata[a.pdata[a.cur]]);
+}
+
+TEST(MyList, can_delete_last_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(1);
+  a.print();
+
+}
+
+TEST(MyList, can_delete_first_element_from_list) {
+  list a(4);
+  list b(3);
+  a.Add(7);
+  b.Add(7);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(5);
+  b.Add(5);
+  a.MoveNext();
+  b.MoveNext();
+  a.Add(6);
+  a.MoveNext();
+  a.Add(4);
+  b.Add(4);
+  a.MoveNext();
+  a.print();
+  a.del1(4);
+  a.print();
+
+}
